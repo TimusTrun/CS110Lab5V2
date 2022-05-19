@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<div class="bg-light">
+    <nav class="navbar" style="max-width: 500px; display: flex; margin: 0 auto;">
+        <a class="navbar-brand" style="text-decoration: none;" href="./new-book.html"> Add a Book</a>
+        <a class="navbar-brand" style="text-decoration: underline; color: red; text-underline-offset: 3px;" href="./book-list.html">View Books</a>
+    </nav>
+</div>
+
+
+<div class="container">
+    <hr>
+    <h1>Create New book</h1>
+    <hr>
+
+    <form action="http://localhost:3000/book" method="POST">
+        <div class="form-group">
+            <label for="ISBN">ISBN</label>
+            <input class="form-control" name="isbn">
+        </div>
+
+        <div class="form-group">
+            <label for="Title">Title</label>
+            <input class="form-control" name="title">
+        </div>
+
+        <div class="form-group">
+            <label for="Author">Author</label>
+            <input class="form-control" name="author">
+        </div>
+
+        <div class="form-group">
+            <label for="PublishDate">Publish Date</label>
+            <input class="form-control" name="publishdate">
+        </div>
+
+        <div class="form-group">
+            <label for="Publisher">Publisher</label>
+            <input class="form-control" name="publisher">
+        </div>
+
+        <div class="form-group">
+            <label for="NumberOfPages">Number Of Pages</label>
+            <input class="form-control" name="numOfPages">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
