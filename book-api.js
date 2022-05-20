@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
+const { redirect } = require('express/lib/response');
 
 const app = express();
 const port = 3000;
@@ -14,15 +16,29 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+app.get('/', (req,res) =>{
+    res.sendFile(path.join(__dirname, './new-book.html'));
+});
+
 app.post('/book', (req, res) => { 
     const book = req.body;
     console.log(book);
     books.push(book);
     console.log('Book is added to the database');
+    res.redirect('/viewBooks');
 });
 
 app.get('/books', (req,res) => {
    res.json(books); 
+});
+
+app.get('/viewBooks', (req,res) => {
+    res.sendFile(path.join(__dirname, './book-list.html'));
+
+});
+
+app.get('/book-list.js', (req,res) =>{
+    res.sendFile(path.join(__dirname, './book-list.js'))
 });
 
 //edit book 
@@ -41,8 +57,8 @@ app.post('/book/:isbn', (req,res) => {
     }
 
     //sending 404
-    // res.send('Book is edited');
-    res.redirect('book-list.html');
+    console.log('Book is edited');
+    res.redirect('/viewBooks');
 });
 
 //delete book
@@ -57,6 +73,9 @@ app.delete('/book/:isbn', (req,res) => {
         }
     }
     console.log("Book deleted");
+    setTimeout(() => {
+        res.redirect(303, '/viewBooks'); 
+    }, 500);
 });
 
 //Get request for edit and delete post functions
